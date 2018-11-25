@@ -10,8 +10,8 @@ This code book should be used when referencing tidy_data.txt.
 
 ## Identifying Variables
 
-*'subjectID' - Unique numerical identifier of study participant
-*'activity' - Descriptive label of the activity that generated the               data in subsequent variables
+*`subjectID` - Unique numerical identifier of study participant
+*`activity` - Descriptive label of the activity that generated the data in subsequent variables
 ### Activity Labels
 
 * `WALKING` (value `1`): subject was walking during the test
