@@ -2,7 +2,7 @@
 
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 path <- getwd()
-download.file(url, path, mode = "wb")
+download.file(url, file.path(path, "dataFiles.zip") mode = "wb")
 unzip("dataset.zip")
 
 # Load activity labels & features for measures of mean and standard deviation
