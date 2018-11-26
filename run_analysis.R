@@ -7,24 +7,24 @@ unzip("dataset.zip")
 
 # Load activity labels & features for measures of mean and standard deviation
 
-activity_labels <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\activity_labels.txt",col.names = c("classlabel", "activityname"))
-features <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\features.txt",col.names = c("index", "featurename"))
+activity_labels <- fread(file.path(path, "UCI HAR Dataset/activity_labels.txt"),col.names = c("classlabel", "activityname"))
+features <- fread(file.path(path, "UCI HAR Dataset/features.txt"),col.names = c("index", "featurename"))
 features_sorted <- grep("(mean|std)\\(\\)", features[, featurename])
 measures <- features[features_sorted,featurename]
 measures <- gsub('[()]', "", measures)
 
 # Load the training & testing datasets
 
-train <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\train\\X_train.txt")[,featuressorted, with = FALSE]
+train <- fread(file.path(path, "UCI HAR Dataset/train/X_train.txt"))[,featuressorted, with = FALSE]
 data.table::setnames(train, colnames(train), measures)
-train_activities <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\train\\Y_train.txt", col.names = "activity")
-train_subjects <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\train\\subject_train.txt", col.names = "subjectID")
+train_activities <- fread(file.path(path, "UCI HAR Dataset/train/Y_train.txt"), col.names = "activity")
+train_subjects <- fread(file.path(path, "UCI HAR Dataset/train/subject_train.txt"), col.names = "subjectID")
 train <- cbind(train_subjects, train_activities, train)
 
-test <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\test\\X_test.txt")[,featuressorted, with = FALSE]
+test <- fread(file.path(path, "UCI HAR Dataset/test/X_test.txt")[,featuressorted, with = FALSE]
 data.table::setnames(test, colnames(train), measures)
-test_activities <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\test\\Y_test.txt", col.names = "activity")
-test_subjects <- fread("C:\\users\\mpask\\Documents\\UCI HAR Dataset\\test\\subject_test.txt", col.names = "subjectID")
+test_activities <- fread(file.path(path, "UCI HAR Dataset/test/Y_test.txt"), col.names = "activity")
+test_subjects <- fread(file.path(path, "UCI HAR Dataset/test/subject_test.txt"), col.names = "subjectID")
 test <- cbind(test_subjects, test_activities, test)
 
 # Merge training and testing data
